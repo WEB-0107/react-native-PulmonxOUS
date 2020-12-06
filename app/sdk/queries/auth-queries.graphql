@@ -1,0 +1,20 @@
+fragment UserDetails on User {
+  id
+  name
+  username
+  avatar
+  emails {
+    email
+    primary
+  }
+}
+
+query me {
+  me {
+    ...UserDetails
+  }
+}
+
+mutation clearCache {
+  clearInfusionsoftCache
+}

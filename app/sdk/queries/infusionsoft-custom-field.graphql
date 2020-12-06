@@ -1,0 +1,60 @@
+fragment FieldDetails on InfusionsoftCustomField {
+  id
+  key
+  label
+  options {
+    id
+    label
+  }
+  type
+  required
+  hidden
+}
+fragment FieldGroupDetails on InfusionsoftCustomFieldGroup {
+  label
+  fields {
+    ...FieldDetails
+  }
+}
+
+fragment ModelFieldGroupDetails on InfusionsoftModelFieldGroup {
+  custom: customFieldGroups {
+    ...FieldGroupDetails
+  }
+  default: defaultFields {
+    ...FieldDetails
+  }
+}
+query InfusionsoftUser {
+  infusionsoftUser {
+    ...UserDetails
+  }
+}
+query CustomFields {
+  infusionsoftCompanyFields {
+    ...ModelFieldGroupDetails
+  }
+  infusionsoftContactFields {
+    ...ModelFieldGroupDetails
+  }
+  infusionsoftOpportunityFields {
+    ...ModelFieldGroupDetails
+  }
+}
+query CompanyFields {
+  fields: infusionsoftCompanyFields {
+    ...ModelFieldGroupDetails
+  }
+}
+
+query ContactFields {
+  fields: infusionsoftContactFields {
+    ...ModelFieldGroupDetails
+  }
+}
+
+query OpportunityFields {
+  fields: infusionsoftOpportunityFields {
+    ...ModelFieldGroupDetails
+  }
+}

@@ -1,0 +1,11 @@
+# Add files here to ignore them from prettier formatting
+node_modules
+ios
+android
+.vscode
+ignite/ignite.json
+package.json
+/dist
+/coverage
+/tmp
+apps/api/src/schema.graphql

@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-multiple-select/lib/react-native-multi-select.js b/node_modules/react-native-multiple-select/lib/react-native-multi-select.js
+index baeeb6e..28b3a9a 100644
+--- a/node_modules/react-native-multiple-select/lib/react-native-multi-select.js
++++ b/node_modules/react-native-multiple-select/lib/react-native-multi-select.js
+@@ -123,7 +123,7 @@ export default class MultiSelect extends Component {
+   constructor(props) {
+     super(props);
+     this.state = {
+-      selector: false,
++      selector: true,
+       searchTerm: ''
+     };
+   }

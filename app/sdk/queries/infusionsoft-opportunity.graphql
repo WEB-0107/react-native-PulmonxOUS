@@ -1,0 +1,81 @@
+fragment InfusionsoftOpportunityDetails on InfusionsoftOpportunity {
+  id
+  updated
+  created
+  affiliateId
+  contact {
+    email
+    name
+    id
+    companyName
+  }
+  created
+  estimatedCloseDate
+  id
+  includeInForecast
+  nextActionDate
+  nextActionNotes
+  notes
+  title
+  projectedRevenueHigh
+  projectedRevenueLow
+  stage
+  updated
+  user {
+    id
+    name
+    email
+  }
+  customFieldMap
+  customFields {
+    id
+    key
+    label
+    value
+    options {
+      id
+      label
+    }
+    type
+  }
+}
+
+query Opportunities {
+  opportunities: infusionsoftOpportunities {
+    ...InfusionsoftOpportunityDetails
+  }
+}
+
+query Opportunity($id: String!) {
+  opportunity: infusionsoftOpportunity(opportunityId: $id) {
+    ...InfusionsoftOpportunityDetails
+  }
+}
+query OpportunityStages {
+  opportunityStages: infusionsoftOpportunityStages {
+    id
+    name
+    stageCount
+    stageOrder
+    endStage
+    isDefault
+  }
+}
+
+mutation CreateOpportunity($input: InfusionsoftOpportunityInput!) {
+  opportunity: createInfusionsoftOpportunity(input: $input) {
+    ...InfusionsoftOpportunityDetails
+  }
+}
+
+mutation UpdateOpportunity($id: String!, $input: InfusionsoftOpportunityInput!) {
+  opportunity: updateInfusionsoftOpportunity(opportunityId: $id, input: $input) {
+    ...InfusionsoftOpportunityDetails
+  }
+}
+
+mutation DeleteOpportunity($id: String!) {
+  opportunity: deleteInfusionsoftOpportunity(input: { opportunityId: $id }) {
+    ...InfusionsoftOpportunityDetails
+  }
+}

@@ -1,0 +1,68 @@
+fragment InfusionsoftContactDetails on InfusionsoftContact {
+  id
+  updated
+  created
+  firstName
+  middleName
+  lastName
+  email
+  phone
+  name
+  contactType
+  emailStatus
+  emailOptedIn
+  line1
+  line2
+  locality
+  region
+  zipCode
+  countryCode
+  emails: emailAddresses {
+    email
+    field
+  }
+  company {
+    id
+    name
+  }
+  companyId
+  companyName
+  tagIds
+  customFieldMap
+  customFields {
+    id
+    key
+    label
+    value
+    options {
+      id
+      label
+    }
+    type
+  }
+  __typename
+}
+
+query Contacts {
+  contacts: infusionsoftContacts {
+    ...InfusionsoftContactDetails
+  }
+}
+
+query Contact($id: String!) {
+  contact: infusionsoftContact(contactId: $id) {
+    ...InfusionsoftContactDetails
+  }
+}
+
+mutation CreateContact($input: InfusionsoftContactInput!) {
+  contact: createInfusionsoftContact(input: $input) {
+    ...InfusionsoftContactDetails
+  }
+}
+
+mutation UpdateContact($id: String!, $input: InfusionsoftContactInput!) {
+  contact: updateInfusionsoftContact(contactId: $id, input: $input) {
+    ...InfusionsoftContactDetails
+  }
+}

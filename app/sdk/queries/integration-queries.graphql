@@ -1,0 +1,51 @@
+fragment IntegrationActionDetails on IntegrationAction {
+  __typename
+  id
+  name
+  params {
+    name
+    type
+    label
+    required
+    defaultValue
+  }
+  provides
+  description
+}
+
+fragment IntegrationDetails on Integration {
+  __typename
+  icon
+  name
+  actions {
+    ...IntegrationActionDetails
+  }
+  identities {
+    id
+    profile
+    providerId
+    profile
+  }
+  provider
+}
+
+query Integrations {
+  integrations {
+    ...IntegrationDetails
+  }
+}
+
+query Integration($provider: IntegrationProvider!) {
+  integration(provider: $provider) {
+    ...IntegrationDetails
+  }
+}
+
+mutation ExecuteIntegrationAction(
+  $identityId: String!
+  $provider: IntegrationProvider!
+  $action: String!
+  $params: JSON
+) {
+  executeIntegrationAction(identityId: $identityId, provider: $provider, action: $action, params: $params)
+}

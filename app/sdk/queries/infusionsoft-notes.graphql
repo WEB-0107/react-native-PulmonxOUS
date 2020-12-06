@@ -1,0 +1,24 @@
+fragment NoteDetails on InfusionsoftNote {
+  id
+  created
+  updated
+  body
+  title
+  type
+}
+
+query Notes($contactId: String!) {
+  infusionsoftNotes(contactId: $contactId) {
+    ...NoteDetails
+  }
+}
+
+query NoteTemplates {
+  infusionsoftNoteTemplates
+}
+
+mutation CreateNote($input: InfusionsoftNoteInput!) {
+  createInfusionsoftNote(input: $input) {
+    ...NoteDetails
+  }
+}
